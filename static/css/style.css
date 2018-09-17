@@ -52,6 +52,7 @@ html, body {
         border: 1px solid darkolivegreen;
         border-radius: 5px;
         overflow: auto;
+        background-color:black;
     }
  
     #send-box {
@@ -90,6 +91,7 @@ html, body {
     .msg > span {
         width: 25%;
         display: inline-block;
+        color:white;
     }
  
     .msg > span::before {
