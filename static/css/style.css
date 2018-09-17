@@ -48,7 +48,7 @@ html, body {
  
     #content {
         width: 100%;
-        height: 350px;
+        height: 100px;
         border: 1px solid darkolivegreen;
         border-radius: 5px;
         overflow: auto;
@@ -95,12 +95,12 @@ html, body {
     }
  
     .msg > span::before {
-        color: darkred;
+        color: white;
         content: " [ ";
     } 
  
     .msg > span::after {
-        color: darkred;
+        color: white;
         content: " ]   : ";
         size: 100%;
     }        
