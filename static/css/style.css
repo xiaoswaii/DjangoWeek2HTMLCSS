@@ -94,12 +94,12 @@ html, body {
         color:white;
     }
  
-    .msg > span::before {
+    .name::before {
         color: white;
         content: " [ ";
     } 
  
-    .msg > span::after {
+    .name::after {
         color: white;
         content: " ]   : ";
         size: 100%;
