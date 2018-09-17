@@ -103,4 +103,10 @@ html, body {
         color: white;
         content: " ]   : ";
         size: 100%;
-    }        
+    }    
+
+    name {
+        width: 25%;
+        display: inline-block;
+        color:white;
+    }
