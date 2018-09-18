@@ -97,7 +97,7 @@ html, body {
  
     .name::after {
         color: white;
-        content: " ]:";
+        content: " ] :";
     }    
 
 
