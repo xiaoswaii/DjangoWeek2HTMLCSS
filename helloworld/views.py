@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 
 
-def ind(request):
+def index(request):
 	talk=["Hello","idiot","what r you doing"]
 	return render(request, 'guestbookver1.html',{'talk':talk})
 
