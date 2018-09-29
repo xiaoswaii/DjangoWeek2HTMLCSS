@@ -10,4 +10,5 @@ def ind(request):
 	return render(request, 'guestbookver1.html',{'talk':talk})
 
 def p2(request):
-	return render(request,'p2.html')
+	day=["一","二","三","四","五"]
+	return render(request,'p2.html',{'day':day})
