@@ -18,6 +18,12 @@
                 <span class="name">小羊</span>
                 <span class="message">小帥，你好！</span><br>
             </div>
+	    <div class="msg">
+		{% for i in talk %}
+	        <span class="name">第三者</span>
+		<span class="message">{{i}}</span><br>
+		{% endfor %}
+	    </div>
         </div>
         <div id="send-box">
             <form id="send-form">
