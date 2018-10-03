@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 
 def index(request):
-	talk=["Hello","idiot","what r you doing"]
+	talk=["Hello"," guys","what are you doing"]
 	return render(request, 'guestbookver1.html',{'talk':talk})
 
 def p2(request):
