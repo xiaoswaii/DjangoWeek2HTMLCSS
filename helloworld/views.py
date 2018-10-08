@@ -3,11 +3,14 @@ from django.contrib.auth import authenticate
 from django.contrib import auth
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-
+from guestbook.models import TextMessage
 
 def index(request):
-	talk=["Hello"," guys","what are you doing"]
-	return render(request, 'guestbookver1.html',{'talk':talk})
+
+	talk1 = TextMessage.objects.create(talker='Xiaoswaii',message='Hello,littleyang!' )
+	talk2 = TextMessage.objects.create(talker='Littleyang',message='Hello,xiaoswaii')
+	msgs=TextMessage.objects.all()
+	return render(request, 'guestbookver1.html',locals())
 
 def p2(request):
 	day=["一","二","三","四","五"]

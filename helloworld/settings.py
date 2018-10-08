@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'guestbook',
 ]
 
 MIDDLEWARE = [
@@ -80,11 +81,20 @@ WSGI_APPLICATION = 'helloworld.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-import dj_database_url
+#import dj_database_url
+#DATABASES = {
+#    'default': dj_database_url.config(),
+#}
 DATABASES = {
-    'default': dj_database_url.config(),
+     'default' : {
+	'ENGINE':'django.db.backends.postgresql_psycopg2',
+	'NAME':'testdb',
+	'USER':'xiaoswaii',
+	'PASSWORD':'Aa19980205',
+	'HOST':'localhost',
+	'PORT':'',
+      }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
