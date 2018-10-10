@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib import auth
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from guestbook.models import TextMessage,Day
+from guestbook.models import TextMessage
 def index(request):
 
 	talk1 = TextMessage.objects.create(talker='Xiaoswaii',message='Hello,littleyang!' )
