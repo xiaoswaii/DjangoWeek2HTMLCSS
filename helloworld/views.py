@@ -11,5 +11,5 @@ def index(request):
 	msgs=TextMessage.objects.all()
 	return render(request, 'guestbookver1.html',locals())
 
-#def p2(request):
-#	return render(request,'p2.html',locals())
+def p2(request):
+	return render(request,'p2.html')
