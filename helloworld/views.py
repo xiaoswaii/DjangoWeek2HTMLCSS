@@ -11,7 +11,5 @@ def index(request):
 	msgs=TextMessage.objects.all()
 	return render(request, 'guestbookver1.html',locals())
 
-def p2(request):
-	dayy=Day.objects.create(libai='一','二','三','四','五')
-	days=Day.object.all()
-	return render(request,'p2.html',locals())
+#def p2(request):
+#	return render(request,'p2.html',locals())

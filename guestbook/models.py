@@ -7,8 +7,8 @@ class TextMessage(models.Model):
 	def _str_(self):
 		return self.talker + "" + self.message
 
-class Day(models.Model):
-	libai=models.CharField(max_length=20,blank=False)
-	def _str_(self):
-		return self.libai
+#class Day(models.Model):
+#	libai=models.CharField(max_length=20,blank=False)
+#	def _str_(self):
+#		return self.libai
 # Create your models here.
