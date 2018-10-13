@@ -3,12 +3,13 @@ from django.contrib.auth import authenticate
 from django.contrib import auth
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from guestbook.models import TextMessage
+from guestbook.models import Text
 def index(request):
-
-	talk1 = TextMessage.objects.create(talker='Xiaoswaii',message='Hello,littleyang!' )
-	talk2 = TextMessage.objects.create(talker='Littleyang',message='Hello,xiaoswaii')
-	msgs=TextMessage.objects.all()
+	if request.method=='POST':
+		user=request.POST['user']
+		talk=request.POST['talk']
+		conversa=Text.objects.create(user=user, talk=talk)
+		conversation=Text.objects.all()
 	return render(request, 'guestbookver1.html',locals())
 
 def p2(request):

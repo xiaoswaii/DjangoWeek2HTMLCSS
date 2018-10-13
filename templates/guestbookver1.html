@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="zh">
-{% load  staticfiles %}
+{% load staticfiles %}
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Xiaoswaii的留言板</title>
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
     <div id="container">
         <div id="content">
-	  {%for msg in msgs%}
+            {%for msg in conversation%}
             <div class="msg">
-            <span class="name">{{msg.talker}}</span>
-	    <span class="message">{{msg.message}}</span>
-	    </div>
-	  {% endfor %}	
+                <span class="name">{{msg.user}}</span>
+                <span class="message">{{msg.talk}}</span>
+            </div>
+            {% endfor %}
         </div>
         <div id="send-box">
-            <form id="send-form">
-                <input type="text" name="name" id="name" placeholder="稱呼">
-                <input type="text" name="msg" id="msg" placeholder="想對他說什麼">
+            <form method="POST" action="." class="myform">
+                <input type="text" name="user" id="user" placeholder="稱呼">
+                <input type="text" name="talk" id="talk" placeholder="想對他說什麼">
                 <input type="submit" id="submit" value="送出">
             </form>
         </div>
-	<!--<a href="p2">我的時間表(利用for輸出星期X)</a>-->
+        <!--<a href="p2">我的時間表(利用for輸出星期X)</a>-->
     </div>
 </body>
 
