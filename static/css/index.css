@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+}
+
+.container {
+    height: 100vh;
+    width: 100%;
+    background-color: pink;
+    position: relative;
+}
+
+.title {
+    position: absolute;
+    /*必須為絶對定位*/
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 200px;
+    width: 600px;
+}
+
+h1 {
+    text-align: center;
+}
+
+a {
+    text-align: center;
+    display: block;
+}
+
+a:link {
+    border-color: green;
+    background-color: green;
+    padding: 5px;
+    color: white;
+    text-decoration: none;
+    width: 50%;
+    margin: auto;
+}
+
+a:hover {
+    border-color: black;
+    background-color: black;
+    padding: 5px;
+    color: white;
+    text-decoration: none;
+}
