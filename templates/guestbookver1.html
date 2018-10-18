@@ -14,6 +14,7 @@
         <div id="content">
             {%for msg in conversation%}
             <div class="msg">
+		<span class="date_time">{{msg.date_time}} &nbsp;</span>
                 <span class="name">{{msg.user}}</span>
                 <span class="message">{{msg.talk}}</span>
             </div>
