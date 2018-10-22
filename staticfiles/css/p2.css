@@ -1,0 +1,21 @@
+table,
+tr,
+td,
+th {
+    background-color: black;
+    color: white;
+    width: 100%;
+    table-layout: fixed;
+    text-align: center;
+    left: 50%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    border-collapse:collapse;
+}
+
+div.whole {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
