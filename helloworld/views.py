@@ -7,9 +7,46 @@ from guestbook.models import Text
 import datetime
 
 def index(request):
+	if request.user.is_authenticated:
+		name=request.user.username
 	return render(request, 'index.html')
 
+def login(request):
+	if request.user.is_authenticated:
+		return redirect('/index/')
+	username=request.POST.get('username','')
+	password=request.POST.get('password','')
+	user=auth.authenticate(username=username,password=password)
+	if user is not None and user.is_active:
+		auth.login(request,user)
+		message='登入成功'
+		return redirect('/index')
+		
+	else:
+		message='尚未登入'
+		return render(request,"login.html",locals())
+	"""if request.method=='POST':
+		username=request.POST['username']
+		password=request.POST['password']
+		user=auth.authenticate(username=username,password=password)
+		if user is not None:         #若驗證成功，以 auth.login(request,user) 登入
+				if user.is_active:
+					auth.login(request,user)
+					return redirect('/index/')  #登入成功產生一個 Session，重導到<index.html>
+					message = '登入成功!'
+				else:
+					message = '帳號尚未啟用!'
+		else:
+				message = '登入失敗!'
+	return render(request,"login.html",locals())"""
+
+def logout(request):
+	auth.logout(request)  #登出成功清除 Session，重導到<index.html>
+	return redirect('/index/')
+
 def guestbook(request):
+	if request.user.is_authenticated:
+		name=request.user.username
 	if request.method=='POST':
 		user=request.POST['user']
 		talk=request.POST['talk']

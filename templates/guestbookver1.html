@@ -7,14 +7,22 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Xiaoswaii的留言板</title>
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
+    {%if request.user.is_authenticated%}
+    <span>{{name}}</span>
+    <a href="/logout">
+        <span class="glyphicon glyphicon-log-out"></span> Log out
+    </a>
     <div id="container">
         <div id="content">
             {%for msg in conversation%}
             <div class="msg">
-		<span class="date_time">{{msg.date_time}} &nbsp;</span>
+                <span class="date_time">{{msg.date_time}} &nbsp;</span>
                 <span class="name">{{msg.user}}</span>
                 <span class="message">{{msg.talk}}</span>
             </div>
@@ -29,6 +37,8 @@
         </div>
         <!--<a href="p2">我的時間表(利用for輸出星期X)</a>-->
     </div>
+    {%else%}
+    <span>{{message}}</span> {%endif%}
 </body>
 
 </html>
