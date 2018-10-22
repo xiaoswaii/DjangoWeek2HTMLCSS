@@ -11,6 +11,29 @@ def index(request):
 		name=request.user.username
 	return render(request, 'index.html')
 
+def register(request):
+	if request.method=="POST":
+		username=request.POST['username']
+		password=request.POST['password']
+		email=request.POST['email']
+		firstname=request.POST['firstname']
+		lastname=request.POST['lastname']
+		try:
+			user = User.objects.get(username=username)
+		except:
+			user=None
+		
+		if user is not None:
+			message="此帳號已有人使用"
+		else:
+			user=User.objects.create_user(username ,email, password )
+			user.first_name=firstname
+			user.last_name=lastname
+			user.save()
+			message="註冊成功"
+			return render(request , "index.html",locals())
+	return render(request , "register.html",locals()) 
+
 def login(request):
 	if request.user.is_authenticated:
 		return redirect('/index/')
@@ -47,6 +70,8 @@ def logout(request):
 def guestbook(request):
 	if request.user.is_authenticated:
 		name=request.user.username
+	else:
+		message="你尚未登入"
 	if request.method=='POST':
 		user=request.POST['user']
 		talk=request.POST['talk']

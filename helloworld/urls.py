@@ -23,5 +23,6 @@ urlpatterns = [
     path('guestbook',views.guestbook),
     path('login/',views.login),
     path('logout/',views.logout),
-    path('index/',views.index)
+    path('index/',views.index),
+    path('register/',views.register)
 ]
