@@ -75,6 +75,9 @@
         <div class="container d-flex h-100 align-items-center">
             <div class="mx-auto text-center">
                 <h1 class="mx-auto my-0 text-uppercase">Guestbook</h1>
+                {%if message%}
+                <h2 class="text-white-50 mx-auto mt-2 mb-5">{{message}}</h2>
+                {%endif%}
                 <a href="/login" class="btn btn-primary js-scroll-trigger">Login</a>
             </div>
         </div>

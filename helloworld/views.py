@@ -24,13 +24,13 @@ def register(request):
 			user=None
 		
 		if user is not None:
-			message="此帳號已有人使用"
+			message="Username used by another"
 		else:
 			user=User.objects.create_user(username ,email, password )
 			user.first_name=firstname
 			user.last_name=lastname
 			user.save()
-			message="註冊成功"
+			message="You Had Registered Succeessfully!"
 			return render(request , "index.html",locals())
 	return render(request , "register.html",locals()) 
 
