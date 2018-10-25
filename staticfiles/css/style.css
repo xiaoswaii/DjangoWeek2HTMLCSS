@@ -60,7 +60,13 @@ h2 {
     text-align: center;
 }
 
-#send-box input {
+#send-box input [name="talk"] {
+    width: 100%;
+    display: inline-block;
+    margin-top: 5%;
+}
+
+#send-box input [name="submit"] {
     display: inline-block;
 }
 
@@ -100,4 +106,8 @@ input[type="button"] {
 .name::after {
     color: white;
     content: " ] :";
+}
+
+.logout {
+    float: right;
 }

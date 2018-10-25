@@ -73,10 +73,10 @@ def guestbook(request):
 	else:
 		message="你尚未登入"
 	if request.method=='POST':
-		user=request.POST['user']
+		#user=request.POST['user']
 		talk=request.POST['talk']
 		date_time=datetime.datetime.now()
-		conversation=Text.objects.create(user=user, talk=talk,date_time=date_time)
+		conversation=Text.objects.create(user=name, talk=talk,date_time=date_time)
 		conversation=Text.objects.all()
 	conversation=Text.objects.all()
 	return render(request, 'guestbookver1.html',locals())

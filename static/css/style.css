@@ -2,6 +2,15 @@ html,
 body {
     padding: 0;
     margin: 0;
+    background: url(../img/guestwallpaper.jpg) center fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
 }
 
 
@@ -60,8 +69,25 @@ h2 {
     text-align: center;
 }
 
-#send-box input {
-    display: inline-block;
+#send-box input[name="submit"] {
+    border-radius: 10px;
+    border-color: #259c70;
+    height: 35px;
+}
+
+#send-box input[name="submit"]:hover {
+    border-radius: 10px;
+    border-color: #259c70;
+    height: 35px;
+    background-color: grey;
+    color: black;
+}
+
+#send-box input[name="talk"] {
+    width: 90%;
+    border-radius: 10px;
+    border-color: #259c70;
+    height: 35px;
 }
 
 #name,
@@ -100,4 +126,13 @@ input[type="button"] {
 .name::after {
     color: white;
     content: " ] :";
+}
+
+.logout {
+    float: right;
+}
+
+.topname {
+    font-size: 18px;
+    color: white;
 }
