@@ -3,8 +3,25 @@ from django.contrib.auth import authenticate
 from django.contrib import auth
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from guestbook.models import Text
+from guestbook.models import Msg
 import datetime
+
+def listuser(request):
+	if 'talkto' in request.POST:
+		sender=request.user.username
+		receiver=request.POST['receiver']
+		conversation=Msg.objects.filter(receiver=receiver)
+		return render(request,'guestbookver1.html',locals())
+	if 'search' in request.POST:
+		searchname=request.POST['searchname']
+		namelist=User.objects.filter(username__contains=searchname)
+		return render(request,'listuser.html',locals())
+        #namelist=User.objects.all()
+	'''if 'delete' in request.POST:
+		username=request.POST['username']
+		User.objects.filter(username=username).delete()'''
+	namelist=User.objects.all()
+	return render(request,'listuser.html',locals())
 
 def index(request):
 	if request.user.is_authenticated:
@@ -69,14 +86,52 @@ def logout(request):
 
 def guestbook(request):
 	if request.user.is_authenticated:
-		name=request.user.username
+		sender=request.user.username
 	else:
 		message="你尚未登入"
-	if request.method=='POST':
-		#user=request.POST['user']
+
+	if 'searching' in request.POST:
+		talk=request.POST['talk']
+		receiver=request.POST['receiver']
+		conversation=Msg.objects.filter(talk__icontains=talk,receiver=receiver)
+		return render(request,'guestbookver1.html',locals())
+	if 'talk' in request.POST:
+		receiver=request.POST['receiver']
 		talk=request.POST['talk']
 		date_time=datetime.datetime.now()
-		conversation=Text.objects.create(user=name, talk=talk,date_time=date_time)
-		conversation=Text.objects.all()
-	conversation=Text.objects.all()
+		conversation=Msg.objects.create(sender=sender, receiver=receiver,talk=talk,date_time=date_time)
+		conversation=Msg.objects.filter(receiver=receiver)
+	else:
+		receiver=sender
+	conversation=Msg.objects.filter(receiver=receiver)
 	return render(request, 'guestbookver1.html',locals())
+
+def personalpage(request):
+	if request.user.is_authenticated:
+		sender=request.user.username
+	else:
+		message="你尚未登入"
+	if 'update' in request.POST:
+		idex=request.POST['idex']
+		receiver=request.POST['receiver']
+		sender=request.POST['sender']
+		newtalk=request.POST['newtalk']
+		talk=request.POST['talk']
+		Msg.objects.filter(id=idex,sender=sender,receiver=receiver,talk=talk).update(talk=newtalk)
+	if 'delete' in request.POST:
+		receiver=request.POST['receiver']
+		idex=request.POST['idex']
+		sender=request.POST['sender']
+		talk=request.POST['talk']
+		Msg.objects.filter(id=idex,receiver=receiver,sender=sender,talk=talk).delete()
+	if 'search' in request.POST:
+		talk=request.POST['talk']
+		sender=request.POST['sender']
+		conversation=Msg.objects.filter(talk__icontains=talk,sender=sender)
+		return render(request,'personalpage.html',locals())
+	conversation=Msg.objects.filter(sender=sender)
+	return render(request,'personalpage.html',locals())
+
+
+
+		

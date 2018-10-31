@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+
+<head>
+    <link href="{% static 'css/listuser.css' %}" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    {%if request.user.is_authenticated%}
+    <ul>
+        <li><a href="/index">Home</a></li>
+        <li><a href="/guestbook">MyGuestBook</a></li>
+        <li><a href="/personalpage">PersonalPage</a></li>
+        <li id="logout"><a href="/logout">Log Out</a></li>
+    </ul>
+    <form action="." method="POST">
+        <input type="text" name="searchname">
+        <input type="hidden" name="search" value="search">
+        <input type="submit" value="submit" name="submit">
+        <a id="listuser" href="/listuser">listall</a>
+    </form>
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Action</th>
+        </tr>
+        {%for test in namelist%}
+        <!--<form action="." method="POST" onsubmit="return confirm('Do you really want to submit this user?');"> 
+<span>{{test.username}}</span>
+<input type="hidden" value={{test.username}} name="username">
+<input type="hidden" name="delete" value="delete">
+<input type="submit" value="刪除" name="submit"><br>
+</form>-->
+        <tr>
+            <td>{{test.username}}</td>
+            <form action="." method="POST">
+                <input type="hidden" value={{test.username}} name="receiver">
+                <input type="hidden" value="talkto" name="talkto">
+                <td><input type="submit" value="到他的留言板留言" name="submit"></td>
+            </form>
+        </tr>
+        {%endfor%}
+    </table>
+    {% else %} {% endif %}
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+{% for a in searchnamelist %}
+<span>{{a.username}}</span>
+{% empty %}
+<span>沒有這個使用者</span>
+{% endfor %}
+<br>
+<a href="/index">index</a>
+</body>
+</html>

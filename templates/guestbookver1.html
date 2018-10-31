@@ -3,32 +3,39 @@
 {% load staticfiles %}
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Xiaoswaii的留言板</title>
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="UTF-8"> {%if request.user.is_authenticated%}
+    <link href="{% static 'css/guestbookver1.css' %}" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> {% if receiver %}
+    <title>{{receiver}}的留言板</title>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 </head>
 
 <body>
-    {%if request.user.is_authenticated%}
-    <span class="topname">{{name}},你好！</span>
-    <div id="logout">
-        <a href="/logout">
-            <button type="button" class="btn btn-outline-secondary">
-        <span class="glyphicon glyphicon-log-out"></span> Log out
-    </button>
 
-        </a>
-    </div>
+    <ul>
+        <li style="color:white;"><a href="/index">Home</a></li>
+        <li><a href="/listuser">UserList</a></li>
+        <li><a href="/personalpage">PersonalPage</a></li>
+        <li id="logout"><a href="/logout">Log Out</a></li>
+    </ul>
+    <h1>{{receiver}}的留言板</h1>
+    {% endif %}
+    <span class="topname">{{sender}},你好！</span>
+    <form action="/guestbook" method="POST">
+        <input type="text" id="search" name="talk" placeholder="Search Message"><br>
+        <input type="hidden" name="searching" value="searching">
+        <input type="hidden" name="receiver" value="{{receiver}}">
+        <input type="submit" name="submit" value="搜尋">
+    </form>
+
     <div id="container">
         <div id="content">
             {%for msg in conversation%}
             <div class="msg">
                 <span class="date_time">{{msg.date_time}} &nbsp;</span>
-                <span class="name">{{msg.user}}</span>
+                <span class="name">{{msg.sender}}</span>
                 <span class="message">{{msg.talk}}</span>
             </div>
             {% endfor %}
@@ -37,6 +44,7 @@
             <form method="POST" action="/guestbook" class="myform">
                 <!--<input type="text" name="user" id="user" placeholder="稱呼">-->
                 <input type="text" name="talk" id="talk" placeholder="想對他說什麼">
+                <input type="hidden" name="receiver" value="{{receiver}}" id="receiver">
                 <input type="submit" name="submit" id="submit" value="送出">
             </form>
         </div>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<form action="." method="POST">
+<input type="text" name="searchname">
+<input type="hidden" name="search" value="search">
+<input type="submit" value="submit" name="submit">
+</form>
+{%for test in namelist%}
+<form action="." method="POST" onsubmit="return confirm('Do you really want to submit this user?');"> 
+<span>{{test.username}}</span>
+<input type="hidden" value={{test.username}} name="username">
+<input type="hidden" name="delete" value="delete">
+<input type="submit" value="刪除" name="submit"><br>
+</form>
+
+<form action="." method="POST">
+<input type="hidden" value={{test.username}} name="receiver">
+<input type="hidden" value="talkto" name="talkto">
+<input type="submit" value="到他的留言板留言" name="submit">
+</form>
+
+{%endfor%}
+</body>
+</html>

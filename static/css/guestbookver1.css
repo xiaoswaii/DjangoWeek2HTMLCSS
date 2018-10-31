@@ -34,6 +34,7 @@ h1,
 h2 {
     font-size: 20px;
     text-align: center;
+    color: white;
 }
 
 #container {
@@ -135,4 +136,52 @@ input[type="button"] {
 .topname {
     font-size: 18px;
     color: white;
+}
+
+ul {
+    list-style-type: none;
+    margin: -10px;
+    margin-bottom: 10px;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+#logout {
+    float: right;
+}
+
+#search {
+    width: 200px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('https://www.w3schools.com/howto/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+#search:focus {
+    width: 100%;
 }
