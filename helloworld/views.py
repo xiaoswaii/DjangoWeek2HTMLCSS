@@ -10,7 +10,7 @@ def listuser(request):
 	if 'talkto' in request.POST:
 		sender=request.user.username
 		receiver=request.POST['receiver']
-		conversation=Msg.objects.filter(receiver=receiver)
+		conversation=Msg.objects.filter(sender=sender,receiver=receiver)
 		return render(request,'guestbookver1.html',locals())
 	if 'search' in request.POST:
 		searchname=request.POST['searchname']
@@ -93,17 +93,17 @@ def guestbook(request):
 	if 'searching' in request.POST:
 		talk=request.POST['talk']
 		receiver=request.POST['receiver']
-		conversation=Msg.objects.filter(talk__icontains=talk,receiver=receiver)
+		conversation=Msg.objects.filter(sender=sender,talk__icontains=talk,receiver=receiver)
 		return render(request,'guestbookver1.html',locals())
 	if 'talk' in request.POST:
 		receiver=request.POST['receiver']
 		talk=request.POST['talk']
 		date_time=datetime.datetime.now()
 		conversation=Msg.objects.create(sender=sender, receiver=receiver,talk=talk,date_time=date_time)
-		conversation=Msg.objects.filter(receiver=receiver)
+		conversation=Msg.objects.filter(sender=sender,receiver=receiver)
 	else:
 		receiver=sender
-	conversation=Msg.objects.filter(receiver=receiver)
+	conversation=Msg.objects.filter(sender=sender,receiver=receiver)
 	return render(request, 'guestbookver1.html',locals())
 
 def personalpage(request):
